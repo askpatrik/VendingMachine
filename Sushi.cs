@@ -6,30 +6,26 @@ using System.Threading.Tasks;
 
 namespace VendingMachine
 {
-    internal class Sushi : JapaneseDish, iProductFunctions
+    internal class Sushi : Food, IProduct
     {
+        internal override string Description { get => ProductInformation.Descriptions[GetType().Name]; }
+        internal override int Price { get => ProductInformation.Prices[GetType().Name];}
+        internal override string Name { get => GetType().Name; }
    
-        internal override string Description { get => descriptions["Sushi"]; }
-        internal override int Price { get => prices["Sushi"]; }
-        internal override string Name { get => names[1]; }
-                
-        internal override void GetPrice()
-        {
-            Console.WriteLine($"The price of {Name} is {Price}");
-        }
         public void Buy()
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"You have purchased a {GetType().Name}");
+            Basket.items.Add(GetType().Name);
         }
 
         public void Describe()
         {
-            Console.WriteLine($"{Name} costs {Price}");
+            Console.WriteLine(Description);
         }
 
         public void Use()
         {
-            Console.WriteLine($"You ate the {Name}, Yummy! ");
+            Console.WriteLine("You ate the sushi");
         }
     }
 }

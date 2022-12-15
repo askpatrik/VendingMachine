@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VendingMachine
 {
-    internal interface iProductFunctions
+    internal interface IProduct
     {      
         void Describe();
         void Buy();
