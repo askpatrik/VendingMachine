@@ -6,11 +6,13 @@
         {
             Console.WriteLine("Vending machine application");
 
-
+            
 
             var sushi = new Sushi();
             Console.WriteLine($"{sushi.Name}, {sushi.Price}, {sushi.Description}");
             var wallet1 = new Wallet();
+
+            wallet1.Purchase(65);
 
 
             Console.WriteLine(wallet1.Balance);
