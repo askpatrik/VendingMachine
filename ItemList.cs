@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VendingMachine
 {
-    internal class Basket
+    internal class ItemList
     {
        public static List<string> items;
     }

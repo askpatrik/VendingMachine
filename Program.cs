@@ -6,22 +6,30 @@
         {
             Console.WriteLine("Vending machine application");
 
-            
 
+            var wal1 = new Wallet();
             var sushi = new Sushi();
-            Console.WriteLine($"{sushi.Name}, {sushi.Price}, {sushi.Description}");
-            var wallet1 = new Wallet();
-
-            wallet1.Purchase(65);
 
 
-            Console.WriteLine(wallet1.Balance);
-            Console.WriteLine(sushi.Name);
+            Console.WriteLine((wal1.Balance));
+            Console.WriteLine($"TOTAL:  {wal1.GetBalance()}   Enkronor: {wal1.oneKronaAmount},  Femkronor:  {wal1.fiveKronaAmount},   TioKronor:  {wal1.tenKronaAmount},   20krona:   {wal1.twentyKronaAmount}  50kronor:   {wal1.fiftyKronaAmount},   100kronoa:   {wal1.hundredKronaAmount} ");
 
-            Transaction.TryPurchase(wallet1, sushi);
 
-            
-            Console.WriteLine(sushi.Price);
+     
+            wal1.InsertCoin(10);
+            wal1.Purchase(sushi);
+            wal1.ReturnChange(wal1.insertedAmount);
+
+            Console.WriteLine($" TOTAL: {wal1.GetBalance()}   Enkronor: {wal1.oneKronaAmount},  Femkronor:  {wal1.fiveKronaAmount},   TioKronor:  {wal1.tenKronaAmount},   20krona:   {wal1.twentyKronaAmount}  50kronor:   {wal1.fiftyKronaAmount},   100kronoa:   {wal1.hundredKronaAmount} ");
+
+
+
+
+
+
+
+
+
 
         }
     }

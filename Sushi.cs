@@ -15,7 +15,7 @@ namespace VendingMachine
         public void Buy()
         {
             Console.WriteLine($"You have purchased a {GetType().Name}");
-            Basket.items.Add(GetType().Name);
+            ItemList.items.Add(GetType().Name);
         }
 
         public void Describe()

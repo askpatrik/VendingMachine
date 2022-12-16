@@ -15,12 +15,6 @@ namespace VendingMachine
         internal const int fiftyKrona = 50;
         internal const int hundredKrona = 100;
 
-        int[] kronos = new int[] { hundredKrona, fiftyKrona, twentyKrona, tenKrona, fiveKrona, oneKrona };
-
-        internal int insertedCash = 40;
-
-        internal int inputAmount = 50;
-
         internal int oneKronaAmount = 10;
         internal int fiveKronaAmount = 10;
         internal int tenKronaAmount = 10;
@@ -28,11 +22,15 @@ namespace VendingMachine
         internal int fiftyKronaAmount = 0;
         internal int hundredKronaAmount = 0;
 
+        int[] kronaValues = new int[] { hundredKrona, fiftyKrona, twentyKrona, tenKrona, fiveKrona, oneKrona };
+       
 
+        internal int insertedAmount = 0; 
+        internal int change = 0;
+        internal int price = 0;
 
-
+       
         internal int Balance { get => (oneKronaAmount * oneKrona) + (fiveKronaAmount * fiveKrona) + (tenKronaAmount * tenKrona); }
-
         internal void IncreaseAmount(int a)
         {
             if (a == 1)
@@ -49,34 +47,59 @@ namespace VendingMachine
                 hundredKronaAmount++;
         }
 
-        internal int GetBalance()
-        {
-            return Balance;
-        }
+        internal int GetBalance() => Balance; 
+        internal int GetInsertedAmount() => insertedAmount; 
 
-        internal void Purchase(int rest)
+      
+        internal void Purchase(BaseProduct product)
         {
-            for (int i = 0; i < kronos.Length; i++)
+            if (Balance >= product.Price)          
+                insertedAmount -= product.Price;
+            ItemList.items.Add(product.Name);
+
+        }
+        internal void InsertCoin(int value)
+        {      
+
+            if (value == 1)
+                oneKronaAmount--;
+            else if (value == 5)
+                fiveKronaAmount--;
+            else if (value == 10)
+                tenKronaAmount--;
+            else if (value == 20)
+                twentyKronaAmount--;
+            else if (value == 50)
+                fiftyKronaAmount--;
+            else if (value == 100)
+                hundredKronaAmount--;
+
+            insertedAmount += value;          
+        }
+        internal void ReturnChange(int value)
+        {
+            for (int i = 0; i < kronaValues.Length; i++)
             {            
 
-                if (rest % kronos[i] == rest)
+                if (value % kronaValues[i] == value)
                     continue;
 
-                while (rest % kronos[i] == 0)
+                while (value % kronaValues[i] == 0)
                 {
-                    IncreaseAmount(kronos[i]);
-                    rest -= kronos[i];
+                    IncreaseAmount(kronaValues[i]);
+                    value -= kronaValues[i];
 
-                    if (rest == 0)
+                    if (value == 0)
                         break;
                 }
-                if (rest > 0)
+                
+                if (value > 0)
                 {
-                    IncreaseAmount(kronos[i]);
-                    rest -= kronos[i];
-                    Purchase(rest);
+                    IncreaseAmount(kronaValues[i]);
+                    value -= kronaValues[i];
+                    ReturnChange(value);
                 }
-             
+                break;            
             }
              
                 
