@@ -12,28 +12,25 @@ namespace VendingMachine
         internal static ConsoleKeyInfo input;
 
 
-        internal static void InsertCoin()
+        internal static void InsertMoney()
         {
-
             do
             {
                 Console.Clear();
-                Console.WriteLine("-- Insert cash in the vending machine --");
+                Console.WriteLine($"There is {Machine.InsertedAmount} kronor in the vending machine. You have {Wallet.myWallet.Balance} kronor " +
+                    $"left in your wallet");
+                             
+                Console.WriteLine("In your wallet you have the following coins and bills:");
                 Console.WriteLine();
-                Console.WriteLine($"Your current wallet balance is: {Wallet.myWallet.GetBalance()}");
-                Console.WriteLine($"Current inserted value is: {Machine.InsertedAmount}");
-                Console.WriteLine("This is your current available cash to input: ");
-
-                Console.WriteLine($" 1. 1-kronor:{Wallet.myWallet.oneKronaAmount}");
-                Console.WriteLine($" 2. 5-kronor:{Wallet.myWallet.fiveKronaAmount}");
-                Console.WriteLine($" 3. 10-kronor:{Wallet.myWallet.tenKronaAmount}");
-                Console.WriteLine($" 4. 20-kronor:{Wallet.myWallet.twentyKronaAmount}");
-                Console.WriteLine($" 5. 50-kronor:{Wallet.myWallet.fiftyKronaAmount}");
-                Console.WriteLine($" 6. 100-kronor:{Wallet.myWallet.hundredKronaAmount}");
-                Console.WriteLine("(Press X to return to main menu)");
+                Console.WriteLine($"1. 1-krona: {Wallet.myWallet.oneKronaAmount} pieces");
+                Console.WriteLine($"2. 5-krona: {Wallet.myWallet.fiveKronaAmount} pieces");
+                Console.WriteLine($"3. 10-krona: {Wallet.myWallet.tenKronaAmount} pieces");
+                Console.WriteLine($"4. 20-bill: {Wallet.myWallet.twentyKronaAmount} pieces");
+                Console.WriteLine($"5. 50-bill: {Wallet.myWallet.fiftyKronaAmount} pieces");
+                Console.WriteLine($"6. 100-bill: {Wallet.myWallet.hundredKronaAmount} pieces");
+                Console.WriteLine("Press X to return");
                 Console.WriteLine();
-                Console.Write("Add cash by pressing corresponding number: ");
-
+                Console.Write("Enter choice for desired coin or bill to insert to the machine:");
                 input = Console.ReadKey();
                 switch (input.KeyChar.ToString())
                 {
@@ -45,8 +42,7 @@ namespace VendingMachine
 
                         Wallet.myWallet.oneKronaAmount--;
                         Machine.InsertedAmount += Wallet.oneKrona;
-                        Console.WriteLine($"Added {Wallet.oneKrona} to the machine");
-
+                        Console.WriteLine($"Added {Wallet.oneKrona} krona to the machine");
                         Console.Write("Press any key to continue: ");
                         Console.ReadKey();
                         break;

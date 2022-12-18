@@ -17,18 +17,21 @@ namespace VendingMachine
             {
                 ConsoleKeyInfo input;
                 Console.Clear();
-                Console.WriteLine("Welcome to the vending machine");
-
-                Console.WriteLine($"You currently have {Machine.InsertedAmount} kronor inserted in the machine! ");
+                Console.WriteLine("Welcome to the vending machine! ");
                 Console.WriteLine();
-                Console.WriteLine("1. Insert coins ");
-                Console.WriteLine("2. Add item");
-                Console.WriteLine("3. View purchase list");
-                Console.WriteLine("4. Purchase item/s");
+               
+                Console.WriteLine($"You have {Wallet.myWallet.Balance} kronor in your wallet, " +
+                    $"and there is currently {Machine.InsertedAmount} kronor in the vending machine.");
+                Console.WriteLine();
+               
+                Console.WriteLine("1. Insert money into the vending machine");
+                Console.WriteLine("2. Register a product to buy");
+                Console.WriteLine("3. View registred products ");
+                Console.WriteLine("4. Purchase product/s");
                 Console.WriteLine("5. Use item/s");
                 Console.WriteLine();
-                
-                Console.Write("Your choice: ");
+                Console.Write("Enter menu choice: ");
+
                 input = Console.ReadKey();
 
 
@@ -36,7 +39,7 @@ namespace VendingMachine
                 {
                     case "1":
                         Console.Clear();
-                        Transaction.InsertCoin();
+                        Transaction.InsertMoney();
                         Console.ReadKey();
                         break;
                     case "2":
