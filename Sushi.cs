@@ -8,14 +8,14 @@ namespace VendingMachine
 {
     internal class Sushi : Food, IProduct
     {
+     
         internal override string Description { get => ProductInformation.Descriptions[GetType().Name]; }
         internal override int Price { get => ProductInformation.Prices[GetType().Name];}
         internal override string Name { get => GetType().Name; }
    
         public void Buy()
         {
-            Console.WriteLine($"You have purchased a {GetType().Name}");
-            ItemList.items.Add(GetType().Name);
+            Transaction.Purchase(this.Price);
         }
 
         public void Describe()
@@ -25,7 +25,7 @@ namespace VendingMachine
 
         public void Use()
         {
-            Console.WriteLine("You ate the sushi");
+            Console.WriteLine($"You ate the {GetType().Name}");
         }
     }
 }

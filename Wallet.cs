@@ -8,6 +8,8 @@ namespace VendingMachine
 {
     internal class Wallet
     {
+        internal static Wallet myWallet = new Wallet();
+
         internal const int oneKrona = 1;
         internal const int fiveKrona = 5;
         internal const int tenKrona = 10;
@@ -22,7 +24,7 @@ namespace VendingMachine
         internal int fiftyKronaAmount = 0;
         internal int hundredKronaAmount = 0;
 
-        int[] kronaValues = new int[] { hundredKrona, fiftyKrona, twentyKrona, tenKrona, fiveKrona, oneKrona };
+        internal int[] kronaValues = new int[] { hundredKrona, fiftyKrona, twentyKrona, tenKrona, fiveKrona, oneKrona };
        
 
         internal int insertedAmount = 0; 
@@ -51,56 +53,12 @@ namespace VendingMachine
         internal int GetInsertedAmount() => insertedAmount; 
 
       
-        internal void Purchase(BaseProduct product)
-        {
-            if (Balance >= product.Price)          
-                insertedAmount -= product.Price;
-            ItemList.items.Add(product.Name);
+     
+        
+          
 
-        }
-        internal void InsertCoin(int value)
-        {      
-
-            if (value == 1)
-                oneKronaAmount--;
-            else if (value == 5)
-                fiveKronaAmount--;
-            else if (value == 10)
-                tenKronaAmount--;
-            else if (value == 20)
-                twentyKronaAmount--;
-            else if (value == 50)
-                fiftyKronaAmount--;
-            else if (value == 100)
-                hundredKronaAmount--;
-
-            insertedAmount += value;          
-        }
-        internal void ReturnChange(int value)
-        {
-            for (int i = 0; i < kronaValues.Length; i++)
-            {            
-
-                if (value % kronaValues[i] == value)
-                    continue;
-
-                while (value % kronaValues[i] == 0)
-                {
-                    IncreaseAmount(kronaValues[i]);
-                    value -= kronaValues[i];
-
-                    if (value == 0)
-                        break;
-                }
-                
-                if (value > 0)
-                {
-                    IncreaseAmount(kronaValues[i]);
-                    value -= kronaValues[i];
-                    ReturnChange(value);
-                }
-                break;            
-            }
+        
+      
              
                 
 
@@ -113,4 +71,4 @@ namespace VendingMachine
 
             }
         }
-    }
+    

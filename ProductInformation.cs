@@ -9,15 +9,16 @@ namespace VendingMachine
     internal class ProductInformation
         //innehåller all produktinformation
     {
+        internal static int count = 1;
         internal static Dictionary<string, int> Prices = new Dictionary<string, int>()
         {
             {"Sushi", 45 },
-            {"Miso Soup", 20 },
-            {"Ramen Bowl", 60 },
+            {"MisoSoup", 20 },
+            {"RamenBowl", 60 },
             {"Soda", 15},
             {"Sake", 10 },
-            {"Matcha Latte ", 35 },
-            {"Candy Bar", 5 },
+            {"MatchaLatte ", 35 },
+            {"CandyBar", 5 },
             {"Mochi", 10 },
             {"Dorayaki", 15 }
         };
@@ -27,6 +28,18 @@ namespace VendingMachine
             {"Miso Soup", "Its Soup of Miso" },
             {"Ramen Bowl", "Noodles in buljong and goodies!" }
         };
+        internal static void ViewList()
+        {
+            Console.WriteLine("Here are the available items: ");
+            Console.WriteLine();
+            foreach (KeyValuePair<string, int> item in Prices)
+            {
+                Console.WriteLine($"{count}. {item.Key}: {item.Value}");
+                count++;
+            }
+            count = 1;
+
+        }
 
 
     }
