@@ -16,20 +16,24 @@ namespace VendingMachine
             do
             {
                 Console.Clear();
-                ProductInformation.ViewList();
-                Console.WriteLine();
-                Console.WriteLine("-- Chose which item to add --");
-                Console.WriteLine("Press x to quit ");
-                Console.WriteLine();             
                 Console.WriteLine($"Current inserted value is: {Machine.InsertedAmount}");
                 Console.WriteLine($"Price of current basket: {Basket.BasketPrice}");
+                Console.WriteLine();               
+                ProductInformation.ViewList();
+                Console.WriteLine();
+                
+                Console.WriteLine("Press x to quit ");
+                Console.WriteLine();             
+               
 
+                Console.Write("Choose a product: ");
                 input = Console.ReadKey();
                 switch (input.KeyChar.ToString())
                 {
-                    case "1":
+                    case "1": 
                         Console.Clear();
                         Sushi sushi = new Sushi();
+                        Machine.AskToAdd(sushi);
                         if (Exceptions.CheckIfEnoughCash(Machine.InsertedAmount, Basket.BasketPrice, sushi) == true)
                             break;                                     
                         if (Exceptions.CheckIfEnoughCash(Machine.InsertedAmount, sushi) == true)
@@ -48,6 +52,8 @@ namespace VendingMachine
                             break;
                         Basket.BasketPrice += miso.Price;
                         Basket.AddToBasket(miso);
+                        
+                       
                         Console.ReadKey();
                         break;
 

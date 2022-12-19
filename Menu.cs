@@ -18,6 +18,8 @@ namespace VendingMachine
                 ConsoleKeyInfo input;
                 Console.Clear();
                 Console.WriteLine("Welcome to the vending machine! ");
+                Console.WriteLine("This machine is dynamic: Add the desired amount of products before paying. " +
+                    "In that way, you dont have to wait for each one to come out of the machine");
                 Console.WriteLine();
                
                 Console.WriteLine($"You have {Wallet.myWallet.Balance} kronor in your wallet, " +
@@ -58,8 +60,8 @@ namespace VendingMachine
                         break;
                     case "5":
                         Console.Clear();
-                        Sushi sushi = new Sushi();
-                        sushi.Use();
+                        Basket.UseItems();
+
                         Console.ReadKey();
                         break;
                         

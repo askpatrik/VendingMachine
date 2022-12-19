@@ -8,6 +8,7 @@ namespace VendingMachine
 {
     internal abstract class Food: BaseProduct
     {
-   
+       //Fantasy
+       
     }
 }

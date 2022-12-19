@@ -13,6 +13,7 @@ namespace VendingMachine
         internal override int Price { get => ProductInformation.Prices[GetType().Name];}
         internal override string Name { get => GetType().Name; }
    
+
         public void Buy()
         {
             Transaction.Purchase(this.Price);
@@ -27,5 +28,7 @@ namespace VendingMachine
         {
             Console.WriteLine($"You ate the {GetType().Name}");
         }
+
+     
     }
 }

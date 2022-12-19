@@ -28,6 +28,12 @@ namespace VendingMachine
             {"Miso Soup", "Its Soup of Miso" },
             {"Ramen Bowl", "Noodles in buljong and goodies!" }
         };
+
+        internal static Dictionary<string, int> NumberProduct = new Dictionary<string, int>()
+        {
+            {"Sushi", 1 },
+         
+        };
         internal static void ViewList()
         {
             Console.WriteLine("Here are the available items: ");
