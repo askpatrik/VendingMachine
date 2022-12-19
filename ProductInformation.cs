@@ -28,7 +28,7 @@ namespace VendingMachine
         {
             {"Sushi", "Raw Fish Dish" },
             {"MisoSoup", "Soup of fermented soybeans" },
-            {"Ramen Bowl", "Dish of Noodles in chicken broth with pak choi, eggs and roasted onion, " },
+            {"RamenBowl", "Dish of Noodles in chicken broth with pak choi, eggs and roasted onion." },
             {"Soda","Carbonated soda drink" },
             {"Sake", "Rice wine, it contains alcohol"},
             {"MatchaLatte", "Green tea drink with foamed milk"},

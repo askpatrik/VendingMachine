@@ -123,7 +123,6 @@ namespace VendingMachine
             
             for (int i = 0; i < wallet.kronaValues.Length; i++)
             {
-
                 if (value % wallet.kronaValues[i] == value)
                     continue;
 
@@ -145,16 +144,10 @@ namespace VendingMachine
                     Console.WriteLine($"A {wallet.kronaValues[i]} krona was returned.");
                     totalChange += wallet.kronaValues[i];
                     ReturnChange(value, Wallet.myWallet);
-                }
-            
-                
+                }               
                 break;
-
             }
-           
             Machine.InsertedAmount = 0;
-            
-
         }
     }
 }

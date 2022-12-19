@@ -6,28 +6,31 @@ using System.Threading.Tasks;
 
 namespace VendingMachine
 {
-    internal class RamenBowl : Food, IProduct
+    internal class RamenBowl : BaseProduct, IProduct
 
     {
-        internal override string Description => throw new NotImplementedException();
 
-        internal override int Price => throw new NotImplementedException();
+        internal override string Description { get => ProductInformation.Descriptions[GetType().Name]; }
+        internal override int Price { get => ProductInformation.AllItems[GetType().Name]; }
+        internal override string Name { get => GetType().Name; }
 
-        internal override string Name => throw new NotImplementedException();
 
         public void Buy()
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"You bought a {GetType().Name}");
+            Transaction.Purchase(this);
         }
 
         public void Describe()
         {
-            throw new NotImplementedException();
+            Console.WriteLine(Description);
         }
 
         public void Use()
         {
-            throw new NotImplementedException();
+            Console.Clear();
+            Console.WriteLine($"You ate the {GetType().Name}. Comforting, delicious... You could eat these everyday! ");
+
         }
     }
 }

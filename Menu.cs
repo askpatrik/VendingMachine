@@ -48,15 +48,20 @@ namespace VendingMachine
                         Console.Clear();
                         Transaction.ReturnChange(Machine.InsertedAmount, Wallet.myWallet);
                         Console.WriteLine($"A total of {Transaction.totalChange} kronor was returned.");
+                        Transaction.totalChange = 0;
                         Console.WriteLine("Did you forget to buy anything? (y/n)?");
                         input = Console.ReadKey();
                         if (input.KeyChar.ToString() == "y")                       
                             Menu.VendingMachineMenu();
 
-                        
-                        Console.WriteLine("Vending machine shutting down in three seconds...");
-                        Thread.Sleep(3000);
-                        runMachine = false;
+                        if (input.KeyChar.ToString() == "n")
+                        {
+                            Console.WriteLine("Vending machine shutting down in three seconds...");
+                            Thread.Sleep(3000);
+                            runMachine = false;
+                            break;
+
+                        }
                         break;
 
                 }

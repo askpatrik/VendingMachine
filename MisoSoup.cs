@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VendingMachine
 {
-    internal class MisoSoup: Food, IProduct
+    internal class MisoSoup: BaseProduct, IProduct
     {
 
         internal override string Description { get => ProductInformation.Descriptions[GetType().Name]; }
