@@ -16,25 +16,22 @@ namespace VendingMachine
             do
             {
                 Console.Clear();
-                Console.WriteLine($"Current inserted value is: {Machine.InsertedAmount}");         
-                Console.WriteLine();               
                 ProductInformation.ViewList();
+                Console.WriteLine("(Press X to return)");
                 Console.WriteLine();
-                
-                Console.WriteLine("Enter X to return.");
-                Console.WriteLine();             
+                Console.WriteLine($"Money in machine: {Machine.InsertedAmount} kronor");
+                Console.Write("Enter the number of desired product: ");             
                
-
-                Console.Write("Choose a product: ");
+              
                 input = Console.ReadKey();
                 switch (input.KeyChar.ToString())
                 {
                     case "1": 
                         Console.Clear();
                         Sushi sushi = new Sushi();
-                        Machine.AskToBuy(sushi);                      
                         if (Exceptions.CheckIfEnoughCash(Machine.InsertedAmount, sushi) == true)
                             break;
+                        Machine.AskToBuy(sushi);                                            
                         sushi.Buy();
                         sushi.Use();
                         Menu.VendingMachineMenu();

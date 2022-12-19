@@ -4,18 +4,9 @@
     {
         static void Main(string[] args)
         {
-
-
-            Menu.VendingMachineMenu();
-
-
+      
+        Menu.VendingMachineMenu();
             
-
-
-
-
-
-
-        }
+    }
     }
 }

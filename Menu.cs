@@ -20,15 +20,15 @@ namespace VendingMachine
                 Console.WriteLine("Welcome to the vending machine! ");
               
                 Console.WriteLine();
-               
-                Console.WriteLine($"You have {Wallet.myWallet.Balance} kronor in your wallet, " +
-                    $"and there is currently {Machine.InsertedAmount} kronor in the vending machine.");
+
+                Console.WriteLine($"There are currently {Machine.InsertedAmount} kronor in the machine. You have {Wallet.myWallet.Balance} kronor left in your wallet.");
                 Console.WriteLine();
                
-                Console.WriteLine("1. Insert money into the vending machine");
-                Console.WriteLine("2. View and buy products");                    
-                Console.WriteLine("3. Receive change and terminate program");
-                Console.Write("Enter menu choice: ");
+                Console.WriteLine("1. Insert money");
+                Console.WriteLine("2. Buy product");                    
+                Console.WriteLine("3. Terminate program and Receive change");
+                Console.WriteLine();
+                Console.Write("What do you want to do?: ");
 
                 input = Console.ReadKey();
 
@@ -47,13 +47,17 @@ namespace VendingMachine
                     case "3":
                         Console.Clear();
                         Transaction.ReturnChange(Machine.InsertedAmount, Wallet.myWallet);
-                        Console.ReadKey();
+                        Console.WriteLine($"A total of {Transaction.totalChange} kronor was returned.");
+                        Console.WriteLine("Did you forget to buy anything? (y/n)?");
+                        input = Console.ReadKey();
+                        if (input.KeyChar.ToString() == "y")                       
+                            Menu.VendingMachineMenu();
+
+                        
                         Console.WriteLine("Vending machine shutting down in three seconds...");
                         Thread.Sleep(3000);
-                        runMachine = false; 
+                        runMachine = false;
                         break;
-
-
 
                 }
 

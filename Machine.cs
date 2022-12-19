@@ -8,18 +8,21 @@ namespace VendingMachine
 {
     internal class Machine
     {
-        internal static int InsertedAmount = 200;
-        internal string input = "";
+        internal static int InsertedAmount = 0;
+        internal static ConsoleKeyInfo input;
+
         internal static int AskToBuy(BaseProduct product)
         {
             Console.Clear();
-            Console.WriteLine($"You chose {product.Name} : {product.Description}. Price: {product.Price}");
-            Console.Write("Do you want to buy this item (y/n): ");
-            string input = Console.ReadLine();
-
-            if (input == "y")
-                return default;                    
-            else if (input == "n")
+            Console.WriteLine($"You chose a {product.Name}. It is a {product.Description}.");
+            Console.WriteLine($"Price: {product.Price} kronor. ");
+            Console.Write("Do you want to buy this product (y/n): ");
+            input = Console.ReadKey();
+                   
+            if (input.KeyChar.ToString() == "y")
+                return default;                      
+            else if (input.KeyChar.ToString() == "n")
+               
                 CancelTransaction(product);
             else
             {
@@ -32,9 +35,10 @@ namespace VendingMachine
         }
         internal static void CancelTransaction(BaseProduct product)
         {
-            Console.WriteLine($"You chose not to buy {product.Name}. ");
+            Console.Clear();
+            Console.WriteLine($"You chose not to buy the {product.Name}. ");
             Console.WriteLine("Returning to main menu...");
-            Thread.Sleep(2000);
+            Thread.Sleep(1500);
             Menu.VendingMachineMenu();
         }
     }

@@ -12,7 +12,7 @@ namespace VendingMachine
         {
             if (kronaAmount == 0)
             {
-                Console.WriteLine($"You have {kronaAmount} of that coin left. You cant insert it");
+                Console.WriteLine($"You do not have any of that coin or bill in your wallet. ");
                 Console.Write("Press any key to continue: ");
                 Console.ReadKey();
                 return true;
@@ -25,8 +25,8 @@ namespace VendingMachine
             if (cash < product.Price)
             {
                 Console.Clear();
-                Console.WriteLine("Insufficient funds. Add more cash ");
-                Console.WriteLine("Press any key to return to the item list");
+                Console.WriteLine($"You don't have enough money to buy a {product.Name}.  ");
+                Console.Write("Press any key to return to the product list: ");
                 Console.ReadKey();
                 return true;
             }

@@ -28,8 +28,8 @@ namespace VendingMachine
         public void Use()
         {
             Console.Clear();
-            Console.WriteLine($"You ate the {GetType().Name}");
-            Console.ReadKey();
+            Console.WriteLine($"You ate the {GetType().Name}. Slimey, but pretty good! ");
+         
         }
 
      

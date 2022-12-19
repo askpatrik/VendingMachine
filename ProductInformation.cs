@@ -27,8 +27,15 @@ namespace VendingMachine
         internal static Dictionary<string, string> Descriptions = new Dictionary<string, string>()
         {
             {"Sushi", "Raw Fish Dish" },
-            {"MisoSoup", "Its Soup of Miso" },
-            {"Ramen Bowl", "Noodles in buljong and goodies!" }
+            {"MisoSoup", "Soup of fermented soybeans" },
+            {"Ramen Bowl", "Dish of Noodles in chicken broth with pak choi, eggs and roasted onion, " },
+            {"Soda","Carbonated soda drink" },
+            {"Sake", "Rice wine, it contains alcohol"},
+            {"MatchaLatte", "Green tea drink with foamed milk"},
+            {"CandyBar", "Japanese snack" },
+            {"Mochi", "Strawberry flavored rice cake" },
+            {"Dorayaki", "Soft honey pancakes with sweet adzuki bean paste" }
+
         };
         internal static Dictionary<string, int> FoodItems = new Dictionary<string, int>()
         {   
@@ -52,7 +59,8 @@ namespace VendingMachine
 
         internal static void ViewList()
         {
-            Console.WriteLine("Here are the products and their price : ");          
+            Console.WriteLine("Products and prices: ");
+            Console.WriteLine();
             Console.WriteLine("Food Items:");           
             foreach (KeyValuePair<string, int> item in FoodItems)
             {
@@ -73,7 +81,8 @@ namespace VendingMachine
                 Console.WriteLine($"{count}. {item.Key}: {item.Value}");
                 count++;
             }
-            
+         
+       
             count = 1;
 
         }

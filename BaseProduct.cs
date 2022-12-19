@@ -11,8 +11,7 @@ namespace VendingMachine
         internal abstract string Description { get; }
         internal abstract int Price { get; }
         internal abstract string Name { get; }
-        //internal abstract int Id { get; }
-        //  internal abstract bool IsAvailable { get; }
+    
 
 
     }
