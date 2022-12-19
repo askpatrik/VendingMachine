@@ -11,12 +11,12 @@ namespace VendingMachine
  
 
             internal override string Description { get => ProductInformation.Descriptions[GetType().Name]; }
-            internal override int Price { get => ProductInformation.Prices[GetType().Name]; }
+            internal override int Price { get => ProductInformation.AllItems[GetType().Name]; }
             internal override string Name { get => GetType().Name; }
 
             public void Buy()
             {
-                Transaction.Purchase(this.Price);
+                Transaction.Purchase(this);
                 Console.WriteLine($"You have purchased a {GetType().Name}");
 
             }

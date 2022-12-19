@@ -27,7 +27,7 @@ namespace VendingMachine
             Console.WriteLine();
             foreach (var item in BasketItems)
             {
-                Console.WriteLine($"{item}, {ProductInformation.Prices[item]} kronor");
+                Console.WriteLine($"{item}, {ProductInformation.AllItems[item]} kronor");
 
 
                 //get the price from casss

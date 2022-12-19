@@ -16,13 +16,12 @@ namespace VendingMachine
             do
             {
                 Console.Clear();
-                Console.WriteLine($"Current inserted value is: {Machine.InsertedAmount}");
-                Console.WriteLine($"Price of current basket: {Basket.BasketPrice}");
+                Console.WriteLine($"Current inserted value is: {Machine.InsertedAmount}");         
                 Console.WriteLine();               
                 ProductInformation.ViewList();
                 Console.WriteLine();
                 
-                Console.WriteLine("Press x to quit ");
+                Console.WriteLine("Enter X to return.");
                 Console.WriteLine();             
                
 
@@ -33,35 +32,32 @@ namespace VendingMachine
                     case "1": 
                         Console.Clear();
                         Sushi sushi = new Sushi();
-                        Machine.AskToAdd(sushi);
-                        if (Exceptions.CheckIfEnoughCash(Machine.InsertedAmount, Basket.BasketPrice, sushi) == true)
-                            break;                                     
+                        Machine.AskToBuy(sushi);                      
                         if (Exceptions.CheckIfEnoughCash(Machine.InsertedAmount, sushi) == true)
                             break;
-                        Basket.BasketPrice += sushi.Price;
-                        Basket.AddToBasket(sushi);                                                                 
-                        Console.ReadKey();
+                        sushi.Buy();
+                        sushi.Use();
+                        Menu.VendingMachineMenu();
                         break;
 
                     case "2":
-                        Console.Clear();                     
+                        Console.Clear();
                         MisoSoup miso = new MisoSoup();
-                        if (Exceptions.CheckIfEnoughCash(Machine.InsertedAmount, Basket.BasketPrice, miso) == true)
-                            break;
+                        Machine.AskToBuy(miso);
                         if (Exceptions.CheckIfEnoughCash(Machine.InsertedAmount, miso) == true)
                             break;
-                        Basket.BasketPrice += miso.Price;
-                        Basket.AddToBasket(miso);
-                        
-                       
-                        Console.ReadKey();
-                        break;
-
+                        miso.Buy();
+                        miso.Use();
                         Console.ReadKey();
                         break;
                     case "3":
                         Console.Clear();
-                        
+                        RamenBowl ramen = new RamenBowl();
+                        Machine.AskToBuy(ramen);
+                        if (Exceptions.CheckIfEnoughCash(Machine.InsertedAmount, ramen) == true)
+                            break;
+                        ramen.Buy();
+                        ramen.Use();
                         Console.ReadKey();
                         break;
                     case "4":

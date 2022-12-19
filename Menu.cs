@@ -10,7 +10,7 @@ namespace VendingMachine
     {
         internal static ConsoleKeyInfo input;
         internal static int count = 1;
-        
+        internal static bool runMachine = true;
         public static void VendingMachineMenu()
         {
             do
@@ -18,8 +18,7 @@ namespace VendingMachine
                 ConsoleKeyInfo input;
                 Console.Clear();
                 Console.WriteLine("Welcome to the vending machine! ");
-                Console.WriteLine("This machine is dynamic: Add the desired amount of products before paying. " +
-                    "In that way, you dont have to wait for each one to come out of the machine");
+              
                 Console.WriteLine();
                
                 Console.WriteLine($"You have {Wallet.myWallet.Balance} kronor in your wallet, " +
@@ -27,11 +26,8 @@ namespace VendingMachine
                 Console.WriteLine();
                
                 Console.WriteLine("1. Insert money into the vending machine");
-                Console.WriteLine("2. Register a product to buy");
-                Console.WriteLine("3. View registred products ");
-                Console.WriteLine("4. Purchase product/s");
-                Console.WriteLine("5. Use item/s");
-                Console.WriteLine();
+                Console.WriteLine("2. View and buy products");                    
+                Console.WriteLine("3. Receive change and terminate program");
                 Console.Write("Enter menu choice: ");
 
                 input = Console.ReadKey();
@@ -46,32 +42,22 @@ namespace VendingMachine
                         break;
                     case "2":
                         Console.Clear();                 
-                        ItemList.ChoseItem();
-                        Console.ReadKey();
+                        ItemList.ChoseItem();                     
                         break;
                     case "3":
                         Console.Clear();
-                        Basket.ViewBasketList();
+                        Transaction.ReturnChange(Machine.InsertedAmount, Wallet.myWallet);
                         Console.ReadKey();
+                        Console.WriteLine("Vending machine shutting down in three seconds...");
+                        Thread.Sleep(3000);
+                        runMachine = false; 
                         break;
-                    case "4":
-                        Console.Clear();
-                        Transaction.Purchase(Basket.BasketPrice);
-                        break;
-                    case "5":
-                        Console.Clear();
-                        Basket.UseItems();
-
-                        Console.ReadKey();
-                        break;
-                        
-
 
 
 
                 }
 
-            } while (true);
+            } while (runMachine);
 
      
 

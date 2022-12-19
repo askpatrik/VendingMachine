@@ -9,6 +9,7 @@ namespace VendingMachine
     internal class Transaction
 
     {
+        internal static int totalChange = 0;
         internal static ConsoleKeyInfo input;
 
 
@@ -107,18 +108,18 @@ namespace VendingMachine
             } while (input.KeyChar.ToString() != "x");
         }
 
-        internal static void Purchase(int sum)
+        internal static void Purchase(BaseProduct product)
         {
-            if (Machine.InsertedAmount >= sum)
-                Machine.InsertedAmount -= sum;
-
-            ReturnChange(Machine.InsertedAmount, Wallet.myWallet);
-
-            //add to basket
+            Console.Clear();
+            Machine.InsertedAmount -= product.Price;
+            Console.WriteLine($"{product.Price} kronor for a {product.Name} was transferred from your inserted amount. You now have {Machine.InsertedAmount} kronor left in the machine");
+            Console.Write("Press any key to use the product! : ");
+            Console.ReadKey();
 
         }
         internal static void ReturnChange(int value, Wallet wallet)
         {
+            
             for (int i = 0; i < wallet.kronaValues.Length; i++)
             {
 
@@ -130,8 +131,8 @@ namespace VendingMachine
                     wallet.IncreaseAmount(wallet.kronaValues[i]);
                     value -= wallet.kronaValues[i];
 
-                    Console.WriteLine($"{wallet.kronaValues[i]} was returned");
-
+                    Console.WriteLine($"A {wallet.kronaValues[i]} krona was returned.");
+                    totalChange += wallet.kronaValues[i];
                     if (value == 0)
                         break;
                 }
@@ -140,12 +141,15 @@ namespace VendingMachine
                 {
                     wallet.IncreaseAmount(wallet.kronaValues[i]);
                     value -= wallet.kronaValues[i];
-                    Console.WriteLine($"{wallet.kronaValues[i]} was returned");
+                    Console.WriteLine($"A {wallet.kronaValues[i]} krona was returned.");
+                    totalChange += wallet.kronaValues[i];
                     ReturnChange(value, Wallet.myWallet);
                 }
+                Console.WriteLine();
+                
                 break;
             }
-            Console.ReadKey();
+            Console.WriteLine($"A total of {totalChange} kronor was returned.");
             Machine.InsertedAmount = 0;
             
         }
